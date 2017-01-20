@@ -13,6 +13,9 @@ static int deflate_init, inflate_init;
 static z_stream deflate_strm, inflate_strm;
 static unsigned char buf[BUFSZ];
 
+Datum flate_deflate(PG_FUNCTION_ARGS);
+Datum flate_inflate(PG_FUNCTION_ARGS);
+
 PG_FUNCTION_INFO_V1(flate_deflate);
 Datum flate_deflate(PG_FUNCTION_ARGS)
 {
