@@ -42,6 +42,12 @@ Datum flate_deflate(PG_FUNCTION_ARGS)
 
         deflate_init = 1;
     }
+    else
+    {
+        ret = deflateParams(&deflate_strm, level, Z_DEFAULT_STRATEGY);
+        if (ret != Z_OK)
+            elog(ERROR, "deflateParams failed: %d", ret);
+    }
 
     if (!PG_ARGISNULL(1))
     {
