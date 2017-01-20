@@ -1,4 +1,5 @@
 MODULE_big = flate
+EXTENSION = flate
 OBJS = flate.o
 DATA = flate--1.0.0.sql
 
