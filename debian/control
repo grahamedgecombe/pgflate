@@ -1,0 +1,58 @@
+Source: pgflate
+Section: database
+Priority: optional
+Maintainer: Graham Edgecombe <gpe@grahamedgecombe.com>
+Build-Depends: debhelper (>= 9), postgresql-server-dev-all
+Standards-Version: 3.9.5
+Homepage: https://www.grahamedgecombe.com/projects/pgflate
+Vcs-Git: https://github.com/grahamedgecombe/pgflate.git
+Vcs-Browser: https://github.com/grahamedgecombe/pgflate
+
+Package: postgresql-9.1-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.1
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
+Package: postgresql-9.2-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.2
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
+Package: postgresql-9.3-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.3
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
+Package: postgresql-9.4-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.4
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
+Package: postgresql-9.5-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.5
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
+Package: postgresql-9.6-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.6
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+

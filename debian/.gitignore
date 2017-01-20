@@ -1,0 +1,4 @@
+/files
+/postgresql-*
+*.substvars
+*.log
