@@ -9,6 +9,7 @@ inflating raw DEFLATE streams, with support for custom dictionaries.
 
 * PostgreSQL headers, libraries and PGXS build infrastructure
 * `pg_config` must be in your `PATH`
+* zlib
 
 ## Building
 
