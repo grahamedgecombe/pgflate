@@ -128,9 +128,9 @@ Datum flate_inflate(PG_FUNCTION_ARGS)
 
     if (!inflate_init)
     {
-        inflate_strm.zalloc   = Z_NULL;
-        inflate_strm.zfree    = Z_NULL;
-        inflate_strm.opaque   = Z_NULL;
+        inflate_strm.zalloc = Z_NULL;
+        inflate_strm.zfree  = Z_NULL;
+        inflate_strm.opaque = Z_NULL;
 
         ret = inflateInit2(&inflate_strm, -MAX_WBITS);
         if (ret != Z_OK)
