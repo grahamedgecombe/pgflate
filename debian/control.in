@@ -3,7 +3,7 @@ Section: database
 Priority: optional
 Maintainer: Graham Edgecombe <gpe@grahamedgecombe.com>
 Build-Depends: debhelper (>= 9), postgresql-server-dev-all, zlib1g-dev
-Standards-Version: 3.9.5
+Standards-Version: 3.9.8
 Homepage: https://www.grahamedgecombe.com/projects/pgflate
 Vcs-Git: https://github.com/grahamedgecombe/pgflate.git
 Vcs-Browser: https://github.com/grahamedgecombe/pgflate
