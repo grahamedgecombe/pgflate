@@ -9,12 +9,40 @@ PG_MODULE_MAGIC;
 #define BUFSZ 16384
 #define DEFAULT_MEM_LEVEL 8
 
-static int deflate_init, inflate_init;
 static z_stream deflate_strm, inflate_strm;
 static unsigned char buf[BUFSZ];
 
+void _PG_init(void);
+void _PG_free(void);
 Datum flate_deflate(PG_FUNCTION_ARGS);
 Datum flate_inflate(PG_FUNCTION_ARGS);
+
+void _PG_init(void)
+{
+    int ret;
+
+    deflate_strm.zalloc = Z_NULL;
+    deflate_strm.zfree  = Z_NULL;
+    deflate_strm.opaque = Z_NULL;
+
+    ret = deflateInit2(&deflate_strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, -MAX_WBITS, DEFAULT_MEM_LEVEL, Z_DEFAULT_STRATEGY);
+    if (ret != Z_OK)
+        elog(FATAL, "deflateInit2 failed: %d", ret);
+
+    inflate_strm.zalloc = Z_NULL;
+    inflate_strm.zfree  = Z_NULL;
+    inflate_strm.opaque = Z_NULL;
+
+    ret = inflateInit2(&inflate_strm, -MAX_WBITS);
+    if (ret != Z_OK)
+        elog(FATAL, "inflateInit failed: %d", ret);
+}
+
+void _PG_free(void)
+{
+    deflateEnd(&deflate_strm);
+    inflateEnd(&inflate_strm);
+}
 
 PG_FUNCTION_INFO_V1(flate_deflate);
 Datum flate_deflate(PG_FUNCTION_ARGS)
@@ -30,24 +58,9 @@ Datum flate_deflate(PG_FUNCTION_ARGS)
     in = PG_GETARG_BYTEA_P(0);
     level = PG_ARGISNULL(2) ? Z_DEFAULT_COMPRESSION : PG_GETARG_INT32(2);
 
-    if (!deflate_init)
-    {
-        deflate_strm.zalloc = Z_NULL;
-        deflate_strm.zfree  = Z_NULL;
-        deflate_strm.opaque = Z_NULL;
-
-        ret = deflateInit2(&deflate_strm, level, Z_DEFLATED, -MAX_WBITS, DEFAULT_MEM_LEVEL, Z_DEFAULT_STRATEGY);
-        if (ret != Z_OK)
-            elog(ERROR, "deflateInit failed: %d", ret);
-
-        deflate_init = 1;
-    }
-    else
-    {
-        ret = deflateParams(&deflate_strm, level, Z_DEFAULT_STRATEGY);
-        if (ret != Z_OK)
-            elog(ERROR, "deflateParams failed: %d", ret);
-    }
+    ret = deflateParams(&deflate_strm, level, Z_DEFAULT_STRATEGY);
+    if (ret != Z_OK)
+        elog(ERROR, "deflateParams failed: %d", ret);
 
     if (!PG_ARGISNULL(1))
     {
@@ -125,19 +138,6 @@ Datum flate_inflate(PG_FUNCTION_ARGS)
 
     inflate_strm.avail_in = 0;
     inflate_strm.next_in  = NULL;
-
-    if (!inflate_init)
-    {
-        inflate_strm.zalloc = Z_NULL;
-        inflate_strm.zfree  = Z_NULL;
-        inflate_strm.opaque = Z_NULL;
-
-        ret = inflateInit2(&inflate_strm, -MAX_WBITS);
-        if (ret != Z_OK)
-            elog(ERROR, "inflateInit failed: %d", ret);
-
-        inflate_init = 1;
-    }
 
     if (!PG_ARGISNULL(1))
     {
