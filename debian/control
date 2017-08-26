@@ -8,14 +8,6 @@ Homepage: https://www.grahamedgecombe.com/projects/pgflate
 Vcs-Git: https://github.com/grahamedgecombe/pgflate.git
 Vcs-Browser: https://github.com/grahamedgecombe/pgflate
 
-Package: postgresql-9.1-flate
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.1
-Description: Raw DEFLATE compression module for PostgreSQL
- PostgreSQL extension providing functions for deflating and inflating raw
- DEFLATE streams, with support for custom dictionaries and configuring the
- compression level.
-
 Package: postgresql-9.2-flate
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-9.2
