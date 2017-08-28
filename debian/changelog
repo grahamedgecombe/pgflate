@@ -1,3 +1,12 @@
+pgflate (1.0.1) stretch; urgency=low
+
+  * Add zlib1g-dev to debian/control.in
+  * Remove Postgrees 9.1 package
+  * Move initialization to _PG_init()
+  * Bump Standards-Version
+
+ -- Graham Edgecombe <gpe@grahamedgecombe.com>  Mon, 28 Aug 2017 18:39:26 +0100
+
 pgflate (1.0.0) unstable; urgency=low
 
   * Initial release.
