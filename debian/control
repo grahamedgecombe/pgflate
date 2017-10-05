@@ -48,3 +48,11 @@ Description: Raw DEFLATE compression module for PostgreSQL
  DEFLATE streams, with support for custom dictionaries and configuring the
  compression level.
 
+Package: postgresql-10-flate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, postgresql-10
+Description: Raw DEFLATE compression module for PostgreSQL
+ PostgreSQL extension providing functions for deflating and inflating raw
+ DEFLATE streams, with support for custom dictionaries and configuring the
+ compression level.
+
